@@ -24,5 +24,16 @@ const unsplash = new Unsplash({
  */
 export async function latest(from = 2, to = 15) {
   logger.info(`unsplash:latest invoked with range from ${from} to ${to}`);
-  return unsplash.photos.listPhotos(from, to, "latest").then(toJson);
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      const photos = await unsplash.photos
+        .listPhotos(from, to, "latest")
+        .then(toJson);
+
+      resolve(photos);
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
