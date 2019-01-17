@@ -1,4 +1,8 @@
-require('dotenv').config();
+/**
+ * @summary: yarn add dotenv node-fetch querystring
+ * @requires ./logger
+ */
+require("dotenv").config();
 
 import fetch from "node-fetch";
 import querystring from "querystring";
@@ -8,28 +12,22 @@ const HUBSPOT_HUB_ID = process.env.HUBSPOT_HUB_ID;
 const HUBSPOT_FORM_ID = process.env.HUBSPOT_FORM_ID;
 
 /**
- * Send lead to Hubspot API
- * 
- * @param {object} contact
- * 
+ * Send a lead to Hubspot
+ *
+ * @param {object} contact Contact info
  * @see https://developers.hubspot.com/docs/methods/forms/submit_form
+ * @returns {Promise}
  */
-export function sendLead(contact) {
+export async function sendLead(contact) {
   logger.info(
-    `hubspot:sendLead invoked for contact: ${JSON.stringify(
-      contact
-    )}`
+    `hubspot:sendLead invoked for contact: ${JSON.stringify(contact)}`
   );
 
+  // Example of contact structure
   const postData = querystring.stringify({
     email: contact.email,
     firstname: contact.first_name,
-    lastname: contact.last_name,
-    titlecategory: contact.seniority.name,
-    company: contact.organization_name,
-    industry: contact.industry.slug,
-    numemployees: contact.company_size.term,
-    phone: contact.phone
+    lastname: contact.last_name
   });
 
   return fetch(
@@ -42,9 +40,5 @@ export function sendLead(contact) {
         "Content-Length": postData.length
       }
     }
-  ).catch(error =>
-    logger.error(
-      `hubspot:sendLead recieved an error sendind contact to hubspot: ${error}`
-    )
   );
 }
