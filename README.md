@@ -49,17 +49,7 @@ import logger from "./logger";
  */
 export async function requestFunc(url) {
   logger.info(`example:requestFunc invoked`);
-
-  return new Promise((resolve, reject) => {
-    try {
-      const response = await fetch(url);
-      // Do something here ...
-      resolve(response);
-    } catch (err) {
-      logger.info(`example:requestFunc - Error: woops`);
-      reject(err);
-    }
-  });
+  return fetch(url);
 }
 ```
 
