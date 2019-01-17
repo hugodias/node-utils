@@ -23,7 +23,7 @@
 
 #### **Do you intend to add a new function or change an existing one?**
 
-- **Ensure a pull request with this feature was not already opened** by searching on GitHub under [Pull Requests](https://github.com/hugodias/node-utils/pull-requests).
+- **Ensure a pull request with this feature was not already opened** by searching on GitHub under [Pull Requests](https://github.com/hugodias/node-utils/pulls).
 
 * Make sure your role meets the following requirements:
   - At the first line it **MUST** have a comment declaring the dependencies
