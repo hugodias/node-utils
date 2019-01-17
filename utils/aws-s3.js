@@ -35,7 +35,7 @@ export async function uploadBase64(key, base64) {
   const fileType = base64.split(";")[0].split("/")[1];
   const filename = `${key}.${fileType}`;
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     try {
       const data = await s3
         .upload({
